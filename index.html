@@ -24,7 +24,7 @@
 <br><br>
 <button id="creatNewQuestion" onclick="newQuestion()">New Question</button>
 <br><br>
-<button id="speak" onclick="speakAnswer()">Speak Answer</button>
+<button style="z-index: 100"; id="speak" onclick="speakAnswer()">Speak Answer</button>
 
 <div>TOTAL CORRECT: <span id="totalCorrect">0</span></div>
 
@@ -32,15 +32,15 @@
 
 
 
-<div id="main">
+<div id="main" style="z-index: -5">
   <span id="question"></span>
   <span> = </span>
 	<div id="answer" contenteditable="true">
 
 	</div>
-	<div id="submitAnswer" style="background-color: green; cursor: pointer; color: white;" onclick="checkAnswer()">SUBMIT</div>
-</div>
 
+</div>
+	<div id="submitAnswer" style="z-index: 5; background-color: green; cursor: pointer; color: white;" onclick="checkAnswer()">SUBMIT</div>
 
 <div style="display: none" id="correctAnswer"></div>
 
@@ -49,6 +49,15 @@
 
 
 <script>
+var answerNotSubmitted = true;
+
+document.getElementById("answer").addEventListener("keypress", function(event) {
+  console.log(event.key);
+  if (event.key === "Enter") {
+    event.preventDefault();
+    checkAnswer();
+  }
+});
 function answerCheckTyping(user_answer){
   var correctAnswer = parseInt(document.getElementById("correctAnswer").innerHTML);
   console.log(user_answer);
@@ -68,10 +77,12 @@ function answerCheckTyping(user_answer){
 }
 
 function checkAnswer(){
-
- var user_answer = parseInt(document.getElementById("answer").innerHTML);
- console.log(user_answer);
- answerCheckTyping(user_answer);
+ if (answerNotSubmitted){
+   var user_answer = parseInt(document.getElementById("answer").innerHTML);
+   console.log(user_answer);
+   answerCheckTyping(user_answer);
+    answerNotSubmitted = false;
+ }
 }
 
 function generateMultiples(){
@@ -94,6 +105,7 @@ function speakAnswer(){
   }
 }
 function newQuestion(){
+  answerNotSubmitted = true;
   document.getElementById("answer").focus();
   createQuestion();
   startTimer();
