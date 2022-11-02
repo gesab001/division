@@ -40,13 +40,15 @@ recognition.onresult = function(event) {
   var correctAnswer = parseInt(document.getElementById("correctAnswer").innerHTML);
   console.log(user_answer);
 
-  document.getElementById("answer").innerHTML = user_answer;
+	  document.getElementById("answer").innerHTML=user_answer	;
+  //document.getElementById("answer").textContent= ;
+
   if (user_answer===correctAnswer){
-	  alert("CORRECT");	
+	  //alert("CORRECT");	
 	  var totalCorrect = parseInt(document.getElementById("totalCorrect").innerHTML) + 1;
 	  document.getElementById("totalCorrect").innerHTML = totalCorrect;
   }else{
-	  alert("WRONG! THE CORRECT ANSWER IS: " + correctAnswer);
+	  //alert("WRONG! THE CORRECT ANSWER IS: " + correctAnswer);
 	  var totalCorrect = parseInt(document.getElementById("totalCorrect").innerHTML) - 1;
 	  document.getElementById("totalCorrect").innerHTML = totalCorrect;
   }

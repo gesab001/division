@@ -17,6 +17,11 @@
 <label>Number to Practice</label>
 
 <input type="number" id="numberToPractice"/>
+<button id="generateMultiplesButton" onclick="generateMultiples()">Generate Questions</button> 
+
+<br><br>
+<div id="answers"></div>
+<br><br>
 <button id="creatNewQuestion" onclick="newQuestion()">New Question</button>
 
 
@@ -25,18 +30,30 @@
 <div id="timer"></div>
 
 
-<div id="main"></div>
 
-<div style="display: none" id="answers"></div>
+<div id="main">
+  <span id="question"></span>
+  <span> = </span>
+	<div id="answer" contenteditable="true">
+
+	</div>
+</div>
+
+
 <div style="display: none" id="correctAnswer"></div>
-<div id="answer">answer</div>
+
 
 </body>
 
 
 <script>
 
+
+function generateMultiples(){
+  makeMultiples();
+}
 function newQuestion(){
+
   createQuestion();
   startTimer();
   try{

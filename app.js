@@ -1,4 +1,15 @@
 
+var multiples;
+
+function makeMultiples(){
+	
+  var f1 = document.getElementById("numberToPractice").value;//getRandomIntMinMax(1, 12);
+  multiples = getMultiples(f1);	
+  console.log(multiples);
+  document.getElementById("answers").innerHTML = multiples;
+
+}
+
 function getRandomIntMinMax(min, max) {
   min = Math.ceil(min);
   max = Math.floor(max);
@@ -28,11 +39,19 @@ function startTimer(){
 	counter = counter + 1;
 	el.innerHTML = "TIMER: " + counter;
 }
+
 function createQuestion(){
-	
-  var f1 = document.getElementById("numberToPractice").value;//getRandomIntMinMax(1, 12);
-  var multiples = getMultiples(f1);
-  f2 = multiples[getRandomInt(multiples.length)];
+	  document.getElementById("answer").innerHTML= ""	;
+
+  var  multipleIndex = getRandomInt(multiples.length); 
+  if (multiples.length>0){
+    f2 = multiples[multipleIndex];
+  }else{
+	 makeMultiples();
+     multipleIndex = getRandomInt(multiples.length); 
+  }
+  f1 = document.getElementById("numberToPractice").value;
+  f2 = multiples[multipleIndex];	 
   var question = f1.toString() + " &divide; "  +f2.toString();
   document.getElementById("correctAnswer").innerHTML = f1 / f2;
   if (f2>f1){	
@@ -40,13 +59,17 @@ function createQuestion(){
 	document.getElementById("correctAnswer").innerHTML = f2 / f1;
 
   }
-  document.getElementById("main").innerHTML = question;
+  document.getElementById("question").innerHTML = question;
 
-  document.getElementById("answers").innerHTML = multiples;
   counter = 0;
   stopTimer();
   interval = setInterval(startTimer, 1000);
   console.log('Ready to receive a color command.');
+    console.log(multiples);
+
+  multiples.splice(multipleIndex, 1);
+  
+  
 
 
 
