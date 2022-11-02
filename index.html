@@ -1,0 +1,59 @@
+<html>
+
+<meta name="viewport" content="width=device-width, initial-scale=1"> <!-- Ensures optimal rendering on mobile devices. -->
+
+<head>
+
+<script src="speechrecognition.js"></script>
+
+<script src="app.js"></script>
+<link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+	
+<label>Number to Practice</label>
+
+<input type="number" id="numberToPractice"/>
+<button id="creatNewQuestion" onclick="newQuestion()">New Question</button>
+
+
+<div>TOTAL CORRECT: <span id="totalCorrect">0</span></div>
+
+<div id="timer"></div>
+
+
+<div id="main"></div>
+
+<div style="display: none" id="answers"></div>
+<div style="display: none" id="correctAnswer"></div>
+<div id="answer">answer</div>
+
+</body>
+
+
+<script>
+
+function newQuestion(){
+  createQuestion();
+  startTimer();
+  try{
+  
+   recognition.stop();
+  }catch(e){
+    console.log(e);
+  }
+    try{
+  
+     recognition.start();
+
+  }catch(e){
+    console.log(e);
+  }
+}
+</script>
+
+
+</html>
