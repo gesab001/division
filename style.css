@@ -11,6 +11,10 @@
   text-align: center;
 }
 
+#submitAnswer{
+	background-color: green;
+}
+
 #timer{
   font-size: 5vw;
   position: absolute;

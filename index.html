@@ -23,7 +23,8 @@
 <div id="answers"></div>
 <br><br>
 <button id="creatNewQuestion" onclick="newQuestion()">New Question</button>
-
+<br><br>
+<button id="speak" onclick="speakAnswer()">Speak Answer</button>
 
 <div>TOTAL CORRECT: <span id="totalCorrect">0</span></div>
 
@@ -37,6 +38,7 @@
 	<div id="answer" contenteditable="true">
 
 	</div>
+	<div id="submitAnswer" style="background-color: green; cursor: pointer; color: white;" onclick="checkAnswer()">SUBMIT</div>
 </div>
 
 
@@ -47,15 +49,36 @@
 
 
 <script>
+function answerCheckTyping(user_answer){
+  var correctAnswer = parseInt(document.getElementById("correctAnswer").innerHTML);
+  console.log(user_answer);
 
+
+  //document.getElementById("answer").textContent= ;
+
+  if (user_answer===correctAnswer){
+	  //alert("CORRECT");	
+	  var totalCorrect = parseInt(document.getElementById("totalCorrect").innerHTML) + 1;
+	  document.getElementById("totalCorrect").innerHTML = totalCorrect;
+  }else{
+	  //alert("WRONG! THE CORRECT ANSWER IS: " + correctAnswer);
+	  var totalCorrect = parseInt(document.getElementById("totalCorrect").innerHTML) - 1;
+	  document.getElementById("totalCorrect").innerHTML = totalCorrect;
+  }	
+}
+
+function checkAnswer(){
+
+ var user_answer = parseInt(document.getElementById("answer").innerHTML);
+ console.log(user_answer);
+ answerCheckTyping(user_answer);
+}
 
 function generateMultiples(){
   makeMultiples();
 }
-function newQuestion(){
 
-  createQuestion();
-  startTimer();
+function speakAnswer(){
   try{
   
    recognition.stop();
@@ -69,6 +92,12 @@ function newQuestion(){
   }catch(e){
     console.log(e);
   }
+}
+function newQuestion(){
+  document.getElementById("answer").focus();
+  createQuestion();
+  startTimer();
+
 }
 </script>
 

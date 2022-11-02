@@ -27,20 +27,11 @@ colors.forEach(function(v, i, a){
   colorHTML += '<span style="background-color:' + v + ';"> ' + v + ' </span>';
 });
 
-recognition.onresult = function(event) {
-  // The SpeechRecognitionEvent results property returns a SpeechRecognitionResultList object
-  // The SpeechRecognitionResultList object contains SpeechRecognitionResult objects.
-  // It has a getter so it can be accessed like an array
-  // The first [0] returns the SpeechRecognitionResult at the last position.
-  // Each SpeechRecognitionResult object contains SpeechRecognitionAlternative objects that contain individual results.
-  // These also have getters so they can be accessed like arrays.
-  // The second [0] returns the SpeechRecognitionAlternative at position 0.
-  // We then return the transcript property of the SpeechRecognitionAlternative object
-  var user_answer = parseInt(event.results[0][0].transcript);
+function answerCheck(user_answer){
   var correctAnswer = parseInt(document.getElementById("correctAnswer").innerHTML);
   console.log(user_answer);
 
-	  document.getElementById("answer").innerHTML=user_answer	;
+
   //document.getElementById("answer").textContent= ;
 
   if (user_answer===correctAnswer){
@@ -51,7 +42,21 @@ recognition.onresult = function(event) {
 	  //alert("WRONG! THE CORRECT ANSWER IS: " + correctAnswer);
 	  var totalCorrect = parseInt(document.getElementById("totalCorrect").innerHTML) - 1;
 	  document.getElementById("totalCorrect").innerHTML = totalCorrect;
-  }
+  }	
+}
+recognition.onresult = function(event) {
+  // The SpeechRecognitionEvent results property returns a SpeechRecognitionResultList object
+  // The SpeechRecognitionResultList object contains SpeechRecognitionResult objects.
+  // It has a getter so it can be accessed like an array
+  // The first [0] returns the SpeechRecognitionResult at the last position.
+  // Each SpeechRecognitionResult object contains SpeechRecognitionAlternative objects that contain individual results.
+  // These also have getters so they can be accessed like arrays.
+  // The second [0] returns the SpeechRecognitionAlternative at position 0.
+  // We then return the transcript property of the SpeechRecognitionAlternative object
+  var user_answer = parseInt(event.results[0][0].transcript);
+  document.getElementById("answer").innerHTML=user_answer;
+  answerCheck(user_answer);
+
 }
 
 recognition.onspeechend = function() {

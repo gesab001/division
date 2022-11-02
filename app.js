@@ -1,6 +1,24 @@
 
 var multiples;
 
+function answerCheckTyping(user_answer){
+  var correctAnswer = parseInt(document.getElementById("correctAnswer").innerHTML);
+  console.log(user_answer);
+
+
+  //document.getElementById("answer").textContent= ;
+
+  if (user_answer===correctAnswer){
+	  //alert("CORRECT");	
+	  var totalCorrect = parseInt(document.getElementById("totalCorrect").innerHTML) + 1;
+	  document.getElementById("totalCorrect").innerHTML = totalCorrect;
+  }else{
+	  //alert("WRONG! THE CORRECT ANSWER IS: " + correctAnswer);
+	  var totalCorrect = parseInt(document.getElementById("totalCorrect").innerHTML) - 1;
+	  document.getElementById("totalCorrect").innerHTML = totalCorrect;
+  }	
+}
+
 function makeMultiples(){
 	
   var f1 = document.getElementById("numberToPractice").value;//getRandomIntMinMax(1, 12);
