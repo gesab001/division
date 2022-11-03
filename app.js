@@ -1,5 +1,8 @@
 
 var multiples;
+var interval;
+var counter = 0;
+var gameNotStarted = true;
 
 function hideMainElements(){
 	document.getElementById("main").style.display = "none";
@@ -36,7 +39,6 @@ function answerCheckTyping(user_answer){
 }
 
 function makeMultiples(){
-	
   var f1 = document.getElementById("numberToPractice").value;//getRandomIntMinMax(1, 12);
   multiples = getMultiples(f1);	
   console.log(multiples);
@@ -55,6 +57,7 @@ function getRandomInt(max) {
 		}
 
 function getMultiples(number){
+
    var result = [];
    for (var x=1; x<=12; x++){
 	  var product = number * x;
@@ -63,16 +66,30 @@ function getMultiples(number){
    return result;
 }	
 
-var interval;
-var counter = 0;
+
+function startNewGame(){
+  clearInterval(interval);
+  counter = 0;
+  gameNotStarted = true;
+}
+
 function stopTimer() {
   clearInterval(interval);
+  gameNotStarted = true;
 }
 function startTimer(){
 	var el = document.getElementById("timer");
 	counter = counter + 1;
 	el.innerHTML = "TIMER: " + counter;
+	var totalCorrect = parseInt(document.getElementById("totalCorrect").innerHTML);
+	console.log("totalCorrect: " + totalCorrect);
+    if (totalCorrect>23){
+		  stopTimer();
+		  console.log("stop timer: ");
+		  hideMainElements();
+	}
 }
+
 
 function createQuestion(){
 		 document.getElementById("correctAnswer").style.display = "none";
@@ -96,13 +113,15 @@ function createQuestion(){
   }
   document.getElementById("question").innerHTML = question;
 
-  counter = 0;
-  stopTimer();
-  interval = setInterval(startTimer, 1000);
-  console.log('Ready to receive a color command.');
     console.log(multiples);
 
   multiples.splice(multipleIndex, 1);
+  if (gameNotStarted){	  
+     counter = 0;
+	 stopTimer();
+     interval = setInterval(startTimer, 1000);
+	 gameNotStarted = false;
+  }	 
 
   
 

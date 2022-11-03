@@ -44,7 +44,7 @@
 	<div id="answer" contenteditable="true">
 
 	</div>
-	<button style="z-index: 100"; id="speak" onclick="speakAnswer()">Speak Answer</button>
+	<img id="speak"  onclick="speakAnswer()" src="text-to-speech.png" width="100px" height="100px"/>
 
 </div>
 <div  id="correctAnswer"></div>
@@ -89,6 +89,7 @@ function checkAnswer(){
 }
 
 function generateMultiples(){
+  startNewGame();
   makeMultiples();
   document.getElementById("creatNewQuestion").click();
 }
@@ -113,7 +114,9 @@ function newQuestion(){
   answerNotSubmitted = true;
   document.getElementById("answer").focus();
   createQuestion();
-  startTimer();
+  
+  
+
 
 }
 </script>
