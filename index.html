@@ -12,43 +12,62 @@
 </head>
 
 <body>
-
-	
-<label>Number to Practice</label>
-
-<input type="number" id="numberToPractice"/>
-<button id="generateMultiplesButton" onclick="generateMultiples()">Generate Questions</button> 
-
-<br><br>
-<div id="answers"></div>
-<br><br>
-<button id="creatNewQuestion" onclick="newQuestion()">New Question</button>
-<br><br>
-<button style="z-index: 100"; id="speak" onclick="speakAnswer()">Speak Answer</button>
-
-<div>TOTAL CORRECT: <span id="totalCorrect">0</span></div>
+<div id="heading">
+<div id="score" >SCORE: <span id="totalCorrect">0</span></div>
 
 <div id="timer"></div>
 
+</div>
+
+	
 
 
-<div id="main" style="z-index: -5">
+
+
+
+<div id="answers"></div>
+
+
+
+<div id="settings">
+<label>Number to Practice</label>
+<input type="number" id="numberToPractice"/>
+<div id="generateMultiplesButton" onclick="generateMultiples()">START</div> 
+
+</div>
+
+<div id="root">
+<div id="container">
+
+<div id="main">
   <span id="question"></span>
-  <span> = </span>
 	<div id="answer" contenteditable="true">
 
 	</div>
+	<button style="z-index: 100"; id="speak" onclick="speakAnswer()">Speak Answer</button>
 
 </div>
-	<div id="submitAnswer" style="z-index: 5; background-color: green; cursor: pointer; color: white;" onclick="checkAnswer()">SUBMIT</div>
+<div  id="correctAnswer"></div>
 
-<div style="display: none" id="correctAnswer"></div>
+
+</div>
+
+</div>
+
+<div id="userResponse">
+	<div id="submitAnswer"  onclick="checkAnswer()">SUBMIT</div>
+	<div id="creatNewQuestion" onclick="newQuestion()">NEXT QUESTION</div>
+
+</div>
 
 
 </body>
 
 
 <script>
+
+hideMainElements();
+
 var answerNotSubmitted = true;
 
 document.getElementById("answer").addEventListener("keypress", function(event) {
@@ -58,23 +77,7 @@ document.getElementById("answer").addEventListener("keypress", function(event) {
     checkAnswer();
   }
 });
-function answerCheckTyping(user_answer){
-  var correctAnswer = parseInt(document.getElementById("correctAnswer").innerHTML);
-  console.log(user_answer);
 
-
-  //document.getElementById("answer").textContent= ;
-
-  if (user_answer===correctAnswer){
-	  //alert("CORRECT");	
-	  var totalCorrect = parseInt(document.getElementById("totalCorrect").innerHTML) + 1;
-	  document.getElementById("totalCorrect").innerHTML = totalCorrect;
-  }else{
-	  //alert("WRONG! THE CORRECT ANSWER IS: " + correctAnswer);
-	  var totalCorrect = parseInt(document.getElementById("totalCorrect").innerHTML) - 1;
-	  document.getElementById("totalCorrect").innerHTML = totalCorrect;
-  }	
-}
 
 function checkAnswer(){
  if (answerNotSubmitted){
@@ -87,6 +90,7 @@ function checkAnswer(){
 
 function generateMultiples(){
   makeMultiples();
+  document.getElementById("creatNewQuestion").click();
 }
 
 function speakAnswer(){
@@ -105,6 +109,7 @@ function speakAnswer(){
   }
 }
 function newQuestion(){
+  showMainElements();
   answerNotSubmitted = true;
   document.getElementById("answer").focus();
   createQuestion();

@@ -1,7 +1,20 @@
 
 var multiples;
 
+function hideMainElements(){
+	document.getElementById("main").style.display = "none";
+	document.getElementById("userResponse").style.display = "none";	
+	
+}
+
+function showMainElements(){
+	document.getElementById("main").style.display = "flex";
+	document.getElementById("userResponse").style.display = "flex";	
+	
+}
 function answerCheckTyping(user_answer){
+	 document.getElementById("correctAnswer").style.display = "block";
+ document.getElementById("correctAnswer").style.color = "black";
   var correctAnswer = parseInt(document.getElementById("correctAnswer").innerHTML);
   console.log(user_answer);
 
@@ -12,10 +25,13 @@ function answerCheckTyping(user_answer){
 	  //alert("CORRECT");	
 	  var totalCorrect = parseInt(document.getElementById("totalCorrect").innerHTML) + 1;
 	  document.getElementById("totalCorrect").innerHTML = totalCorrect;
+	  	  document.getElementById("correctAnswer").innerHTML = "CORRECT";
   }else{
-	  //alert("WRONG! THE CORRECT ANSWER IS: " + correctAnswer);
 	  var totalCorrect = parseInt(document.getElementById("totalCorrect").innerHTML) - 1;
 	  document.getElementById("totalCorrect").innerHTML = totalCorrect;
+	  document.getElementById("correctAnswer").innerHTML = "WRONG! THE CORRECT ANSWER IS: " + correctAnswer;
+	  document.getElementById("correctAnswer").style.color = "red";
+	  
   }	
 }
 
@@ -59,6 +75,7 @@ function startTimer(){
 }
 
 function createQuestion(){
+		 document.getElementById("correctAnswer").style.display = "none";
 	  document.getElementById("answer").innerHTML= ""	;
 
   var  multipleIndex = getRandomInt(multiples.length); 
@@ -73,7 +90,7 @@ function createQuestion(){
   var question = f1.toString() + " &divide; "  +f2.toString();
   document.getElementById("correctAnswer").innerHTML = f1 / f2;
   if (f2>f1){	
-    question = f2.toString() + " &divide; "  +f1.toString();
+    question = f2.toString() + " &divide; "  +f1.toString() + " = ";
 	document.getElementById("correctAnswer").innerHTML = f2 / f1;
 
   }
@@ -86,7 +103,7 @@ function createQuestion(){
     console.log(multiples);
 
   multiples.splice(multipleIndex, 1);
-  
+
   
 
 
