@@ -83,7 +83,7 @@ function startTimer(){
 	el.innerHTML = "TIMER: " + counter;
 	var totalCorrect = parseInt(document.getElementById("totalCorrect").innerHTML);
 	console.log("totalCorrect: " + totalCorrect);
-    if (totalCorrect>23){
+    if (totalCorrect>119){
 		  stopTimer();
 		  console.log("stop timer: ");
 		  hideMainElements();

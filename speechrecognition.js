@@ -38,9 +38,7 @@ function answerCheck(user_answer){
 	  //alert("CORRECT");	
 	  var totalCorrect = parseInt(document.getElementById("totalCorrect").innerHTML) + 1;
 	  document.getElementById("totalCorrect").innerHTML = totalCorrect;
-	  if (totalCorrect>24){
-		  stopTimer();
-	  }
+
   }else{
 	  //alert("WRONG! THE CORRECT ANSWER IS: " + correctAnswer);
 	  var totalCorrect = parseInt(document.getElementById("totalCorrect").innerHTML) - 1;
