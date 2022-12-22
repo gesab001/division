@@ -34,7 +34,6 @@ function answerCheckTyping(user_answer){
 	  document.getElementById("totalCorrect").innerHTML = totalCorrect;
 	  document.getElementById("correctAnswer").innerHTML = "WRONG! THE CORRECT ANSWER IS: " + correctAnswer;
 	  document.getElementById("correctAnswer").style.color = "red";
-	  alert("WRONG! THE CORRECT ANSWER IS: " + correctAnswer);
 	  
   }	
 }
@@ -60,8 +59,8 @@ function getRandomInt(max) {
 function getMultiples(number){
 
    var result = [];
-   for (var x=11; x<=99; x++){
-	  var product = x;
+   for (var x=1; x<=12; x++){
+	  var product = number * x;
 	  result.push(product);
    }
    return result;
@@ -84,7 +83,7 @@ function startTimer(){
 	el.innerHTML = "TIMER: " + counter;
 	var totalCorrect = parseInt(document.getElementById("totalCorrect").innerHTML);
 	console.log("totalCorrect: " + totalCorrect);
-    if (totalCorrect>99){
+    if (totalCorrect>119){
 		  stopTimer();
 		  console.log("stop timer: ");
 		  hideMainElements();
@@ -105,8 +104,13 @@ function createQuestion(){
   }
   f1 = document.getElementById("numberToPractice").value;
   f2 = multiples[multipleIndex];	 
-  var question = f1.toString() + " + "  +f2.toString();
-  document.getElementById("correctAnswer").innerHTML = parseInt(f1) + parseInt(f2);
+  var question = f1.toString() + " &divide; "  +f2.toString();
+  document.getElementById("correctAnswer").innerHTML = f1 / f2;
+  if (f2>f1){	
+    question = f2.toString() + " &divide; "  +f1.toString() + " = ";
+	document.getElementById("correctAnswer").innerHTML = f2 / f1;
+
+  }
   document.getElementById("question").innerHTML = question;
 
     console.log(multiples);

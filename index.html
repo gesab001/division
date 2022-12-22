@@ -80,24 +80,18 @@ document.getElementById("answer").addEventListener("keypress", function(event) {
 
 
 function checkAnswer(){
-  if (document.getElementById("answer").innerHTML!=""){
-	 if (answerNotSubmitted){
-	   var user_answer = parseInt(document.getElementById("answer").innerHTML);
-	   console.log(user_answer);
-	   answerCheckTyping(user_answer);
-		answerNotSubmitted = false;
-	 }
-  }else{
-      alert("PLEASE ANSWER THE QUESTION");  
-
-  }
-
+ if (answerNotSubmitted){
+   var user_answer = parseInt(document.getElementById("answer").innerHTML);
+   console.log(user_answer);
+   answerCheckTyping(user_answer);
+    answerNotSubmitted = false;
+ }
 }
 
 function generateMultiples(){
   startNewGame();
   makeMultiples();
-  firstQuestion();
+  document.getElementById("creatNewQuestion").click();
 }
 
 function speakAnswer(){
@@ -116,23 +110,13 @@ function speakAnswer(){
   }
 }
 function newQuestion(){
-  console.log(document.getElementById("answer").innerHTML);
-  if (document.getElementById("answer").innerHTML!=""){
-    checkAnswer();
-    showMainElements();
-    answerNotSubmitted = true;
-    document.getElementById("answer").focus();
-    createQuestion();
-  }else{
-    alert("PLEASE ANSWER THE QUESTION");  
-  }
-}
+  showMainElements();
+  answerNotSubmitted = true;
+  document.getElementById("answer").focus();
+  createQuestion();
+  
+  
 
-function firstQuestion(){
-    showMainElements();
-    answerNotSubmitted = true;
-    document.getElementById("answer").focus();
-    createQuestion();
 
 }
 </script>
